@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>이미지 클릭 대사</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>터치 테스트</title>
 
 <style>
-  /* 기본 */
   body {
     background: white;
     font-family: Arial, sans-serif;
     padding: 20px;
   }
 
-  /* 가운데 정렬 컨테이너 */
+  /* 이미지 컨테이너 */
   .container {
     position: relative;
     width: 400px;
@@ -24,16 +23,14 @@
   .container img {
     width: 100%;
     display: block;
-    pointer-events: none; /* ⭐ 터치 먹통 방지 핵심 */
   }
 
-  /* 클릭 영역 */
+  /* 터치 영역 */
   .hotspot {
     position: absolute;
-    z-index: 10;          /* ⭐ 이미지 위로 */
     cursor: pointer;
-    /* 테스트할 땐 아래 주석 해제해서 보이게 */
-    /* background: rgba(255,0,0,0.3); */
+    z-index: 10;
+    background: rgba(255, 0, 0, 0.25); /* ← 지금은 보이게 */
   }
 
   /* 말풍선 */
@@ -44,19 +41,13 @@
     background: #f1f1f1;
     border-radius: 16px;
     font-size: 14px;
-    display: none;
-    position: relative;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
   }
 
-  /* 말풍선 꼬리 */
-  #dialogue::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 20px;
-    border-width: 0 8px 8px 8px;
-    border-style: solid;
-    border-color: transparent transparent #f1f1f1 transparent;
+  #dialogue.show {
+    opacity: 1;
   }
 </style>
 </head>
@@ -64,24 +55,36 @@
 <body>
 
 <div class="container">
-  <img src="image.png" alt="이미지" />
+  <img src="image.png" alt="이미지">
 
+  <!-- 터치 영역 1 -->
   <div class="hotspot"
-       style="top:60px; left:120px; width:80px; height:80px;"
-       onclick="say('아! 갑자기 쓰다듬어준다고? 이거 꿈이야?')">
-
-    <div class="hotspot"
-       style="top:200px; left:150px; width:100px; height:60px;"
-       onclick="say('변태네~')">
+       style="top:50px; left:50px; width:100px; height:100px;"
+       onclick="showText('첫 번째 영역')">
   </div>
+
+  <!-- 터치 영역 2 -->
+  <div class="hotspot"
+       style="top:200px; left:200px; width:120px; height:80px;"
+       onclick="showText('두 번째 영역')">
+  </div>
+
+</div>
 
 <div id="dialogue"></div>
 
 <script>
-  function say(text) {
+  let timer = null;
+
+  function showText(text) {
     const box = document.getElementById("dialogue");
     box.textContent = text;
-    box.style.display = "block";
+    box.classList.add("show");
+
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      box.classList.remove("show");
+    }, 3000);
   }
 </script>
 

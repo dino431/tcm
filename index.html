@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>클릭</title>
+<style>
+body {
+  background:black;
+  color:white;
+  text-align:center;
+}
+.wrap {
+  position:relative;
+  display:inline-block;
+}
+img {
+  width:600px;
+}
+.hit {
+  position:absolute;
+  top:150px;
+  left:220px;
+  width:120px;
+  height:120px;
+  background:rgba(255,0,0,0.3);
+  cursor:pointer;
+}
+#text {
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <img src="image.png">
+  <div class="hit" onclick="say('여길 눌렀다')"></div>
+</div>
+
+<p id="text"></p>
+
+<script>
+function say(t){
+  document.getElementById("text").innerText = t;
+}
+</script>
+
+</body>
+</html>

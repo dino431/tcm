@@ -2,12 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>이미지 클릭 대사</title>
+<title>클릭 대사</title>
 
 <style>
   body {
     background: white;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     padding: 20px;
   }
 
@@ -16,18 +16,16 @@
     width: 400px;
   }
 
-  .container img {
+  img {
     width: 100%;
     display: block;
   }
 
-  /* 클릭 영역 */
   .hotspot {
     position: absolute;
     cursor: pointer;
   }
 
-  /* 말풍선 */
   #dialogue {
     margin-top: 20px;
     max-width: 280px;
@@ -35,11 +33,10 @@
     background: #f1f1f1;
     border-radius: 16px;
     font-size: 14px;
-    position: relative;
     display: none;
+    position: relative;
   }
 
-  /* 말풍선 꼬리 */
   #dialogue::after {
     content: "";
     position: absolute;
@@ -57,13 +54,11 @@
 <h3>이미지를 눌러봐</h3>
 
 <div class="container">
-  <image.png></image.png>
-  <img src="image.jpg">
+  <img src="image.png">
 
-  <!-- 클릭 영역 -->
   <div class="hotspot"
        style="top:60px; left:120px; width:80px; height:80px;"
-       onclick="say('거기… 누르지 말랬잖아')">
+       onclick="say('말풍선 테스트')">
   </div>
 </div>
 
@@ -71,9 +66,9 @@
 
 <script>
   function say(text) {
-    const box = document.getElementById("dialogue");
-    box.innerText = text;
-    box.style.display = "block";
+    const d = document.getElementById("dialogue");
+    d.innerText = text;
+    d.style.display = "block";
   }
 </script>
 

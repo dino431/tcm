@@ -2,46 +2,51 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>클릭</title>
+<title>이미지 클릭 대사</title>
 <style>
-body {
-  background:black;
-  color:white;
-  text-align:center;
-}
-.wrap {
-  position:relative;
-  display:inline-block;
-}
-img {
-  width:600px;
-}
-.hit {
-  position:absolute;
-  top:150px;
-  left:220px;
-  width:120px;
-  height:120px;
-  background:rgba(255,0,0,0.3);
-  cursor:pointer;
-}
-#text {
-  margin-top:20px;
-}
+  body {
+    font-family: sans-serif;
+    padding: 20px;
+  }
+  .container {
+    position: relative;
+    width: 400px;
+  }
+  img {
+    width: 100%;
+  }
+  .hotspot {
+    position: absolute;
+    cursor: pointer;
+  }
+  #spot1 {
+    top: 60px;
+    left: 120px;
+    width: 80px;
+    height: 80px;
+  }
+  #dialogue {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 40px;
+  }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <img src="image.png">
-  <div class="hit" onclick="say('여길 눌렀다')"></div>
+<h2>클릭해봐</h2>
+
+<div class="container">
+  <img src="image.jpg">
+  <div class="hotspot" id="spot1" onclick="say('거기 누르지 마…')"></div>
 </div>
 
-<p id="text"></p>
+<div id="dialogue"></div>
 
 <script>
-function say(t){
-  document.getElementById("text").innerText = t;
+function say(text) {
+  document.getElementById("dialogue").innerText = text;
 }
 </script>
 
